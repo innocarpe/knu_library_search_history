@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Book name:</b>
+  <%= @book_search_history.book_name %>
+</p>
+
+<p>
+  <b>Search count:</b>
+  <%= @book_search_history.search_count %>
+</p>
+
+
+<%= link_to 'Edit', edit_book_search_history_path(@book_search_history) %> |
+<%= link_to 'Back', book_search_histories_path %>
