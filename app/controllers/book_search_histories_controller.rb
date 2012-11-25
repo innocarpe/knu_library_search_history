@@ -54,7 +54,7 @@ class BookSearchHistoriesController < ApplicationController
   
   def find_histories
     # use like + wild card to find histories
-    book_search_histories = BookSearchHistory.select("book_name").
+    book_search_histories = BookSearchHistory.select("book_name, search_count").
       where("book_name like ?", "%" + params[:book_name] + "%").
       order("search_count DESC, book_name").    # 1. count / #2. alphabetical order in same count
       limit(params[:limit])   # grab book_search_histories of 'limite' numbers
