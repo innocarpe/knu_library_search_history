@@ -1,3 +1,4 @@
+# coding : utf-8
 class BookSearchHistoriesController < ApplicationController
   # GET /book_search_histories
   # GET /book_search_histories.json
@@ -53,14 +54,15 @@ class BookSearchHistoriesController < ApplicationController
   
   def find_histories
     # use like + wild card to find histories
-    @book_search_histories = BookSearchHistory.where("book_name like ?", "%" + params[:book_name] + "%").
+    book_search_histories = BookSearchHistory.select("book_name").
+      where("book_name like ?", "%" + params[:book_name] + "%").
       order("search_count DESC, book_name").    # 1. count / #2. alphabetical order in same count
       limit(params[:limit])   # grab book_search_histories of 'limite' numbers
     
     # return items to the client
     respond_to do |format|
-      format.json { render json: @book_search_histories }
-      format.xml  { render xml:  @book_search_histories }
+      format.json { render json: book_search_histories }
+      format.xml  { render xml:  book_search_histories }
     end
   end
   
