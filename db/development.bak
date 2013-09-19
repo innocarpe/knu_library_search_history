@@ -1,0 +1,7 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "book_search_histories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "book_name" varchar(255), "search_count" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
+INSERT INTO "schema_migrations" VALUES('20121123135659');
+CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version");
+COMMIT;
